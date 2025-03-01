@@ -1,0 +1,5 @@
+speciesId,speciesName,wateringCadence,lightRequirements
+species_001,Pothos,7,Medium
+species_002,Monstera,10,High
+species_003,Snake Plant,14,Low
+species_004,Fern,14,low

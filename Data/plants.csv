@@ -1,0 +1,9 @@
+plantTag,speciesId,roomId,lastWateredDate,nextWateringDate
+snake_plant_001,species_003,room_003,2025-02-28,2025-03-14
+fern_001,species_004,room_002,2024-02-26,2024-03-11
+monstera_001,species_002,room_002,2025-02-28,2025-03-10
+snake_plant_002,species_003,room_002,2025-02-28,2025-03-14
+pothos_002,species_001,room_001,2024-02-25,2024-03-03
+pothos_001,species_001,room_001,2025-02-28,2025-03-07
+fern_002,species_004,room_004,2025-02-28,2025-03-14
+pothos_003,species_001,room_001,2024-02-23,2024-03-01

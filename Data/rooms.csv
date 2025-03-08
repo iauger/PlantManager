@@ -2,7 +2,3 @@ roomId,roomName,sunExposure,lightVolume
 room_001,Living Room,South,High
 room_002,Kitchen,East,Medium
 room_003,Bedroom,West,Low
-room_004,Office,south,low
-room_005,Library,north,low
-room_006,Guest Bedroom,north,medium
-room_007,Test,north,low

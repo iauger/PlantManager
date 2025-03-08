@@ -12,8 +12,8 @@ Plant Manager is a command-line application designed to help users keep track of
 
 - **View Plant Database** – Displays all active plants, grouped by room and sorted by next watering date.
 - **Add a New Plant** – Users can select a species, assign it to a room, and track watering schedules.
-- **Add a New Species** – Users can add custom plant species with defined watering cadence and light requirements.
-- **Add a New Room** – Users can define and add new rooms to categorize their plants.
+- **Add & View Species** – Users can add custom plant species with defined watering cadence and light requirements, as well as view all existing species.
+- **Add & View Rooms** – Users can define and add new rooms to categorize their plants, as well as view all existing rooms.
 - **Log Watering Event** – Easily update a plant's last watered date and recalculate the next watering date.
 - **Deactivate & Reactivate Plants** – Remove plants from active tracking while maintaining their data.
 - **Reset Database** – Restore default data while preserving the program’s functionality.
@@ -34,13 +34,14 @@ Plant Manager is a command-line application designed to help users keep track of
 📦 PlantManager
  ┣ 📂 Data              # CSV files storing plants, species, and rooms
  ┣ 📂 PlantManager.Java # Java source files
- ┃ ┣ 📜 MenuManager.java     # Handles user navigation and menu system
- ┃ ┣ 📜 DatabaseManager.java # Manages data operations
- ┃ ┣ 📜 PlantManager.java    # Handles plant-specific functions
- ┃ ┣ 📜 RoomManager.java     # Handles room-related operations
- ┃ ┣ 📜 SpeciesManager.java  # Handles species-related operations
- ┃ ┣ 📜 FileHandler.java     # Manages file read/write operations
- ┃ ┣ 📜 IDGenerator.java     # Generates unique IDs for plants, species, and rooms
+ ┃ ┣ 📜 MenuManager.java        # Handles user navigation and menu system
+ ┃ ┣ 📜 DatabaseManager.java    # Manages data operations
+ ┃ ┣ 📜 PlantManager.java       # Handles plant-specific functions
+ ┃ ┣ 📜 BaseObjectManager.java  # Abstract parent class for object handling
+ ┃ ┣ 📜 RoomManager.java        # Handles room-related operations, extends BaseObjectManager
+ ┃ ┣ 📜 SpeciesManager.java     # Handles species-related operations, extends BaseObjectManager
+ ┃ ┣ 📜 FileHandler.java        # Manages file read/write operations
+ ┃ ┣ 📜 IDGenerator.java        # Generates unique IDs for plants, species, and rooms
  ┗ 📜 README.md         # Project documentation
 ```
 

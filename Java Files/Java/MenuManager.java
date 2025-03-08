@@ -18,8 +18,8 @@ public class MenuManager {
             System.out.println("-----------------------------------");
             System.out.println("1) View Plant Database");
             System.out.println("2) Add a New Plant");
-            System.out.println("3) Manage Species");
-            System.out.println("4) Manage Rooms");
+            System.out.println("3) Add & View Species");
+            System.out.println("4) Add & View Rooms");
             System.out.println("5) Log Watering Event");
             System.out.println("6) Deactivate a Plant");
             System.out.println("7) Reactivate a Plant");

@@ -1,5 +1,3 @@
-package PlantManager.Java;
-
 import java.util.*;
 
 public class MenuManager {
@@ -20,8 +18,8 @@ public class MenuManager {
             System.out.println("-----------------------------------");
             System.out.println("1) View Plant Database");
             System.out.println("2) Add a New Plant");
-            System.out.println("3) Add a New Species");
-            System.out.println("4) Add a New Room");
+            System.out.println("3) Manage Species");
+            System.out.println("4) Manage Rooms");
             System.out.println("5) Log Watering Event");
             System.out.println("6) Deactivate a Plant");
             System.out.println("7) Reactivate a Plant");
@@ -40,10 +38,75 @@ public class MenuManager {
                         PlantManager.addPlant(plantList, speciesList, roomList);
                         break;
                     case 3:
-                        SpeciesManager.addSpecies(speciesList);
-                        break;
+                    SpeciesManager speciesManager = new SpeciesManager();
+
+                    while (true) {
+                        System.out.println("\nSpecies Management:");
+                        System.out.println("1) Add a new plant species");
+                        System.out.println("2) View existing plant species");
+                        System.out.println("3) Return to Main Menu");
+                    
+                        int speciesChoice = -1;
+                    
+                        try {
+                            speciesChoice = Integer.parseInt(scanner.nextLine().trim());
+                    
+                            switch (speciesChoice) {
+                                case 1:
+                                    speciesManager.add(speciesList);
+                                    continue; 
+                                case 2:
+                                    speciesManager.display(speciesList);
+                                    continue;
+                                case 3:
+                                    clearConsole();
+                                    break; 
+                                default:
+                                    System.out.println("Invalid input, please select 1, 2, or 3.");
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Invalid input: " + e.getMessage());
+                        }
+                    
+                        if (speciesChoice == 3) { 
+                            break;
+                        }
+                    }
+                    break;
                     case 4:
-                        RoomManager.addRoom(roomList);
+                        RoomManager roomManager = new RoomManager();
+                        while (true) {
+                            System.out.println("\nRoom Management:");
+                            System.out.println("1) Add a new room");
+                            System.out.println("2) View existing rooms");
+                            System.out.println("3) Return to Main Menu");
+                        
+                            int roomChoice = -1;
+                        
+                            try {
+                                roomChoice = Integer.parseInt(scanner.nextLine().trim());
+                        
+                                switch (roomChoice) {
+                                    case 1:
+                                        roomManager.add(roomList);
+                                        continue; // ✅ Stays inside Room Management
+                                    case 2:
+                                        roomManager.display(roomList);
+                                        continue; // ✅ Stays inside Room Management
+                                    case 3:
+                                        clearConsole();
+                                        break; // ✅ Exit Room Management
+                                    default:
+                                        System.out.println("Invalid input, please select 1, 2, or 3.");
+                                }
+                            } catch (NumberFormatException e) {
+                                System.out.println("Invalid input: " + e.getMessage());
+                            }
+                        
+                            if (roomChoice == 3) { // ✅ Ensures loop exits when returning to Main Menu
+                                break;
+                            }
+                        }
                         break;
                     case 5:
                         PlantManager.logWateringEvent(plantList, roomList);

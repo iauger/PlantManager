@@ -1,5 +1,3 @@
-package PlantManager.Java;
-
 import java.time.LocalDate;
 
 public class Plant {

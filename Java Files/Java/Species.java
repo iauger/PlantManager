@@ -1,5 +1,3 @@
-package PlantManager.Java;
-
 public class Species {
     private String speciesId;
     private String speciesName;

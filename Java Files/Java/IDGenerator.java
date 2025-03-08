@@ -1,5 +1,3 @@
-package PlantManager.Java;
-
 import java.util.List;
 
 public class IDGenerator {

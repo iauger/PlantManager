@@ -1,13 +1,11 @@
-package PlantManager.Java;
-
 import java.util.*;
 
-public class SpeciesManager {
+public class SpeciesManager extends BaseObjectManager<Species> {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    // addSpecies Method construction
-    public static void addSpecies(List<Species> speciesList) {
+    // Extended add Method construction
+    public void add(List<Species> speciesList) {
         while (true) {
             System.out.println("Add a New Plant Species");
 
@@ -57,20 +55,18 @@ public class SpeciesManager {
             FileHandler.writeSpeciesToFile(speciesList);
 
             System.out.println("\nSuccessfully added new species: " + newSpecies);
+            break;
+        }
+    }
 
-            System.out.println("Do you want to add another species?");
-            System.out.println("1) Add another species");
-            System.out.println("2) Return to Main Menu");
-
-            try {
-                int choice = Integer.parseInt(scanner.nextLine().trim());
-                if (choice == 2) {
-                    break;
-                }
-            }
-            catch (NumberFormatException e) {
-                System.out.println("Invalid choice. Please enter 1 or 2.");
-            }
+    // Extended display method
+    public void display(List<Species> speciesList) {
+        if (speciesList.isEmpty()) {
+            System.out.println("No species available.");
+            return;
+        }
+        for (Species species : speciesList) {
+            System.out.println(species);
         }
     }
 }

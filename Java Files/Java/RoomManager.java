@@ -1,14 +1,12 @@
-package PlantManager.Java;
-
 import java.util.List;
 import java.util.Scanner;
 
-public class RoomManager {
+public class RoomManager extends BaseObjectManager<Room> {
 
     private static Scanner scanner = new Scanner(System.in);
 
     // addRoom Method construction
-    public static void addRoom(List<Room> roomList) {
+    public void add(List<Room> roomList) {
         while (true) {
             System.out.println("Add a New Room");
 
@@ -62,20 +60,18 @@ public class RoomManager {
             FileHandler.writeRoomsToFile(roomList);
 
             System.out.println("\nSuccessfully added new room: " + newRoom.getName());
-
-            System.out.println("Do you want to add another room?");
-            System.out.println("1) Add another room");
-            System.out.println("2) Return to Main Menu");
-
-            try {
-                int choice = Integer.parseInt(scanner.nextLine().trim());
-                if (choice == 2) {
-                    break;
-                }
-            }
-            catch (NumberFormatException e) {
-                System.out.println("Invalid choice. Please enter 1 or 2.");
-            }
+            break;
         }           
+    }
+    
+    // 
+    public void display(List<Room> roomList) {
+        if (roomList.isEmpty()) {
+            System.out.println("No rooms available.");
+            return;
+        }
+        for (Room room : roomList) {
+            System.out.println(room);
+        }
     }
 }

@@ -1,5 +1,3 @@
-package PlantManager.Java;
-
 public class Room {
     protected String roomId;
     protected String roomName;

@@ -2,8 +2,8 @@ import java.time.LocalDate;
 
 public class Plant {
     private String plantTag;
-    private Species species; // ✅ Store full Species object
-    private Room room;       // ✅ Store full Room object
+    private Species species; // Store full Species object
+    private Room room;       // Store full Room object
     private LocalDate lastWateredDate;
     private LocalDate nextWateringDate;
     private boolean isActive;

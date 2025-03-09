@@ -10,15 +10,12 @@ public class Room {
         this.sunExposure = sunExposure;
         this.lightVolume = lightVolume;
     }
-
     public String getName() {
         return roomName;
     }
-
     public String getRoomId() {
         return roomId;
     }
-
     public String getSunExposure() {
         return sunExposure;
     }

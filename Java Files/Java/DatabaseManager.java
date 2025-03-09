@@ -5,27 +5,33 @@ public class DatabaseManager {
 
     private static Scanner scanner = new Scanner(System.in);
 
+    // Built in method for  resetting the csv file to default values
     public static void resetDatabase(List<Species> speciesList, List<Room> roomList, List<Plant> plantList) {
         System.out.print("Are you sure you want to reset the database? This will delete all current data. (Y/N): ");
         String confirmation = scanner.nextLine().trim().toLowerCase();
     
         if (confirmation.equals("y")) {
+            // Clear current lists
             plantList.clear();
             speciesList.clear();
             roomList.clear();
-    
+            
+            // Add default values to lists
             speciesList.addAll(getDefaultSpecies());
             roomList.addAll(getDefaultRooms());
             plantList.addAll(getDefaultPlants(speciesList, roomList));
-    
+            
+            // Write data to csv to overwrite current values
             FileHandler.writePlantsToFile(plantList);
             FileHandler.writeRoomsToFile(roomList);
+            FileHandler.writeSpeciesToFile(speciesList);
             System.out.println("All database records have been reset to default values.");
         } else {
             System.out.println("Database reset cancelled.");
         }
     }
     
+    // Hardcoded default data per class 
     private static List<Plant> getDefaultPlants(List<Species> speciesList, List<Room> roomList) {
         List<Plant> plants = new ArrayList<>();
         plants.add(new Plant("pothos_001", findSpeciesById("species_001", speciesList), findRoomById("room_001", roomList), LocalDate.now(), LocalDate.now().plusDays(7)));

@@ -112,7 +112,7 @@ public class PlantManager {
                 try {
                     roomIndex = Integer.parseInt(scanner.nextLine().trim()) - 1;
                     if (roomIndex >= 0 && roomIndex < roomList.size()) {
-                        break;  // ✅ Exit loop on valid input
+                        break;  
                     }
                     System.out.println("Invalid selection, please enter a number between 1 and " + roomList.size());
                 } catch (NumberFormatException e) {
@@ -162,11 +162,13 @@ public class PlantManager {
             // Ensure a plant was selected before proceeding
             if (selectedPlant != null) {
                 selectedPlant.setLastWateredDate(today);
-                selectedPlant.setNextWateringDate(today.plusDays(selectedPlant.getSpecies().getWateringCadence()));
+                selectedPlant.setNextWateringDate(today.plusDays(selectedPlant.getSpecies().getWateringCadence())); // Adjust NextWateringDate by Cadence variable
 
+                // Print confirmation for User
                 System.out.println("Successfully logged watering for " + selectedPlant.getPlantTag());
                 System.out.println("Next watering scheduled for " + selectedPlant.getNextWateringDate());
 
+                // Update storage
                 FileHandler.writePlantsToFile(plantList);
             }
 
@@ -190,6 +192,7 @@ public class PlantManager {
         List<Plant> activePlants = new ArrayList<>();
         Plant selectedPlant = null;
         
+        // Identify all active plants
         for (Plant plant : plantList) {
             if (plant.isActive()) {
                 activePlants.add(plant);
@@ -203,11 +206,13 @@ public class PlantManager {
 
         while (true) {
             
+            // Present active list to User
             System.out.println("Active Plants List:");
             for (int i = 0; i < activePlants.size(); i++) {
                 System.out.println((i + 1) + ") " + activePlants.get(i));
             }
 
+            // Accept input from User for deactivation
             System.out.println("Select the Plant that you would like to deactivate: ");
             try {
                 int plantIndex = Integer.parseInt(scanner.nextLine().trim()) - 1;
@@ -224,13 +229,17 @@ public class PlantManager {
             }
         }
 
+        // Confirmation for User
         selectedPlant.setActive(false);
         System.out.println(selectedPlant.getSpeciesName() + " in " + selectedPlant.getRoomName() + " has been deactivated.");
 
+        // Update storage
         FileHandler.writePlantsToFile(plantList);
         return;
     }
 
+    // Method for reactivating inactive plants
+    // Identical flow as above, but filtering for isActive = False
     public static void reactivatePlant(List<Plant> plantList) {
         
         List<Plant> inactivePlants = new ArrayList<>();

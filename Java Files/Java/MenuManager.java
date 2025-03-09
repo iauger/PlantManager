@@ -12,6 +12,7 @@ public class MenuManager {
         speciesList = DatabaseManager.loadSpeciesDatabase();
         plantList = DatabaseManager.loadPlantDatabase(speciesList, roomList);
 
+        // Menu formatting
         while (true) {
             clearConsole();
             System.out.println("\nWelcome to Plant Manager");
@@ -28,6 +29,7 @@ public class MenuManager {
             System.out.println("-----------------------------------");
             System.out.print("Enter your choice: ");
 
+            // Menu flow
             try {
                 int choice = Integer.parseInt(scanner.nextLine().trim());
                 switch (choice) {
@@ -38,6 +40,7 @@ public class MenuManager {
                         PlantManager.addPlant(plantList, speciesList, roomList);
                         break;
                     case 3:
+                    // Initialize instance for manager class
                     SpeciesManager speciesManager = new SpeciesManager();
 
                     while (true) {
@@ -74,6 +77,7 @@ public class MenuManager {
                     }
                     break;
                     case 4:
+                        // Initialize instance of manager class
                         RoomManager roomManager = new RoomManager();
                         while (true) {
                             System.out.println("\nRoom Management:");
@@ -89,13 +93,13 @@ public class MenuManager {
                                 switch (roomChoice) {
                                     case 1:
                                         roomManager.add(roomList);
-                                        continue; // ✅ Stays inside Room Management
+                                        continue; 
                                     case 2:
                                         roomManager.display(roomList);
-                                        continue; // ✅ Stays inside Room Management
+                                        continue; 
                                     case 3:
                                         clearConsole();
-                                        break; // ✅ Exit Room Management
+                                        break; 
                                     default:
                                         System.out.println("Invalid input, please select 1, 2, or 3.");
                                 }
@@ -103,7 +107,7 @@ public class MenuManager {
                                 System.out.println("Invalid input: " + e.getMessage());
                             }
                         
-                            if (roomChoice == 3) { // ✅ Ensures loop exits when returning to Main Menu
+                            if (roomChoice == 3) { 
                                 break;
                             }
                         }
@@ -131,7 +135,7 @@ public class MenuManager {
             }
         }
     }
-    // method to "clear" the console 
+    // Method to "clear" the console by adding blank lines to terminal
     public static void clearConsole() {
         for (int i = 0; i < 50; i++) {
             System.out.println();

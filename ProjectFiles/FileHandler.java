@@ -5,12 +5,15 @@ import java.util.*;
 
 public class FileHandler {
 
+    // Initialize CSV files by creating them if they do not exist
+    // Ensure proper headers are written for each file
     public static void initializeCSVFiles() {
         createFileIfMissing("Data/plants.csv", new String[]{"plantTag", "speciesId", "roomId", "lastWateredDate", "nextWateringDate"});
         createFileIfMissing("Data/species.csv", new String[]{"speciesId", "speciesName", "wateringCadence", "lightRequirements"});
         createFileIfMissing("Data/rooms.csv", new String[]{"roomId", "roomName", "sunExposure", "lightVolume"});
     }
 
+    // Creates the file if not present and writes the  header row
     private static void createFileIfMissing(String filename, String[] headers) {
         File file = new File(filename);
         if (!file.exists()) {
@@ -27,6 +30,7 @@ public class FileHandler {
         }
     }
 
+    // Reads plant data from 'plants.csv' and  converts the file to a list  of Plant objects.
     public static List<Plant> readPlantsFromFile(List<Species> speciesList, List<Room> roomList) {
         List<Plant> plants = new ArrayList<>();
         String filename = "Data/plants.csv";
@@ -44,11 +48,11 @@ public class FileHandler {
                     String plantTag = row[0];
                     String speciesId = row[1];
                     String roomId = row[2];
-                    LocalDate lastWatered = LocalDate.parse(row[3]);
-                    LocalDate nextWatering = LocalDate.parse(row[4]);
+                    LocalDate lastWatered = LocalDate.parse(row[3]); // Convert from string
+                    LocalDate nextWatering = LocalDate.parse(row[4]); // Convert from string
 
-                    Species species = findSpeciesById(speciesId, speciesList);
-                    Room room = findRoomById(roomId, roomList);
+                    Species species = findSpeciesById(speciesId, speciesList); // Uses the id to return the full object
+                    Room room = findRoomById(roomId, roomList); // Uses the id to return the full object
                     
                     if (species != null && room != null) {
                         plants.add(new Plant(plantTag, species, room, lastWatered, nextWatering));
@@ -62,6 +66,8 @@ public class FileHandler {
         return plants;
     }
 
+    // Writes plant data to 'plants.csv' and overwrites existing data
+    // Appending data to the list of all  plant  objects happens inside the program
     public static void writePlantsToFile(List<Plant> plantList) {
         String filename = "Data/plants.csv";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
@@ -83,6 +89,7 @@ public class FileHandler {
         }
     }
 
+    // Reads room data from 'rooms.csv' and converts it to a list of Room objects.
     public static List<Room> readRoomsFromFile() {
         List<Room> rooms = new ArrayList<>();
         String filename = "Data/rooms.csv";
@@ -107,6 +114,7 @@ public class FileHandler {
         return rooms;
     }
 
+    // Writes room data to 'rooms.csv' and overwrites existing data.
     public static void writeRoomsToFile(List<Room> rooms) {
         String filename = "Data/rooms.csv";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
@@ -122,6 +130,7 @@ public class FileHandler {
         }
     }
 
+    // Reads species data from 'species.csv' and converts it to a list of Species objects.
     public static List<Species> readSpeciesFromFile() {
         List<Species> speciesList = new ArrayList<>();
         String filename = "Data/species.csv";
@@ -146,6 +155,7 @@ public class FileHandler {
         return speciesList;
     }
     
+    // Writes species data to 'species.csv' and overwrites existing data.
     public static void writeSpeciesToFile(List<Species> speciesList) {
         String filename = "Data/species.csv";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
@@ -166,7 +176,7 @@ public class FileHandler {
         }
     }
     
-
+    // Helper methods for reading plants data from csv
     private static Species findSpeciesById(String speciesId, List<Species> speciesList) {
         for (Species species : speciesList) {
             if (species.getSpeciesId().equals(speciesId)) {

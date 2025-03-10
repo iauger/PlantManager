@@ -65,7 +65,7 @@ public class RoomManager extends BaseObjectManager<Room> {
         }           
     }
     
-    // 
+    // Displys all rooms using toString() format
     public void display(List<Room> roomList) {
         if (roomList.isEmpty()) {
             System.out.println("No rooms available.");

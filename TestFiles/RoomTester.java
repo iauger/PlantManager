@@ -4,7 +4,6 @@ import ProjectFiles.Room;
 
 public class RoomTester {
     public static void main(String[] args) {
-        System.out.println("🏡 Running Room Class Tests...");
 
         // Test Default Room Constructor
         Room myRoom = new Room("room_001", "Living Room", "South", "High");

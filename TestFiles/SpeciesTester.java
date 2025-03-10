@@ -4,7 +4,6 @@ import ProjectFiles.Species;
 
 public class SpeciesTester {
     public static void main(String[] args) {
-        System.out.println("🏡 Running Species Class Tests...");
 
         // Test Default Species Constructor
         ProjectFiles.Species mySpecies = new Species("Species_001", "Test Species", 7, "High");

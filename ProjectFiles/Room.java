@@ -1,3 +1,5 @@
+package ProjectFiles;
+
 public class Room {
     protected String roomId;
     protected String roomName;

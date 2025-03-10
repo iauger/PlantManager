@@ -1,3 +1,4 @@
+package ProjectFiles;
 public class Species {
     private String speciesId;
     private String speciesName;

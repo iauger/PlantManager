@@ -1,4 +1,4 @@
 plantTag,speciesId,roomId,lastWateredDate,nextWateringDate
-pothos_001,species_001,room_001,2025-03-08,2025-03-15
-monstera_001,species_002,room_002,2025-03-08,2025-03-18
-snake_plant_001,species_003,room_003,2025-03-08,2025-03-22
+pothos_001,species_001,room_001,2025-03-10,2025-03-17
+monstera_001,species_002,room_002,2025-03-10,2025-03-20
+snake_plant_001,species_003,room_003,2025-03-10,2025-03-24

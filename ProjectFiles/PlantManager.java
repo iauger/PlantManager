@@ -1,3 +1,4 @@
+package ProjectFiles;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -76,18 +77,7 @@ public class PlantManager {
 
             System.out.println("\nSuccessfully added new plant: " + newPlant);
 
-            System.out.println("Do you want to add another plant?");
-            System.out.println("1) Enter new Plant");
-            System.out.println("2) Return to Main Menu");
-
-            try {
-                int userInt = Integer.parseInt(scanner.nextLine().trim());
-                if (userInt == 2) {
-                    break;
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Error. Please enter 1 or 2.");
-            }
+            break;
         }
     }
 
@@ -186,6 +176,100 @@ public class PlantManager {
             }
         }
     }
+
+    public static void movePlant(List<Plant> plantList, List<Room> roomList) {
+        if (plantList.isEmpty()) {
+            System.out.println("There are no plants in your home.");
+            return;
+        }
+    
+        List<Plant> activePlants = new ArrayList<>();
+        for (Plant plant : plantList) {
+            if (plant.isActive()) {
+                activePlants.add(plant);
+            }
+        }
+    
+        if (activePlants.isEmpty()) {
+            System.out.println("There are no active plants to move.");
+            return;
+        }
+    
+        Plant selectedPlant = null;
+        Room selectedRoom = null;
+    
+        // Select a Plant
+        while (true) {
+            System.out.println("\nActive Plants List:");
+            for (int i = 0; i < activePlants.size(); i++) {
+                System.out.println((i + 1) + ") " + activePlants.get(i));
+            }
+            System.out.println("Enter the number of the plant you want to move, or 0 to cancel:");
+    
+            try {
+                int plantIndex = Integer.parseInt(scanner.nextLine().trim()) - 1;
+    
+                if (plantIndex == -1) {
+                    System.out.println("Move canceled.");
+                    break;
+                }
+    
+                if (plantIndex < 0 || plantIndex >= activePlants.size()) {
+                    System.out.println("Invalid selection. Please enter a number between 1 and " + activePlants.size());
+                    continue;
+                }
+    
+                selectedPlant = activePlants.get(plantIndex);
+                break; // Exit loop once a valid plant is selected
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        }
+    
+        // Select a New Room
+        while (true) {
+            System.out.println("\nAvailable Rooms:");
+            for (int i = 0; i < roomList.size(); i++) {
+                System.out.println((i + 1) + ") " + roomList.get(i).getName());
+            }
+            System.out.println("Which room would you like to move " + selectedPlant.getSpeciesName() + " to?");
+            System.out.println("Enter a number between 1 and " + roomList.size() + ", or 0 to cancel:");
+    
+            try {
+                int roomIndex = Integer.parseInt(scanner.nextLine().trim()) - 1;
+    
+                if (roomIndex == -1) {
+                    System.out.println("Move canceled.");
+                    break;
+                }
+    
+                if (roomIndex < 0 || roomIndex >= roomList.size()) {
+                    System.out.println("Invalid selection. Please enter a number between 1 and " + roomList.size());
+                    continue;
+                }
+    
+                selectedRoom = roomList.get(roomIndex);
+    
+                // Prevent moving to the same room
+                if (selectedPlant.getRoom().equals(selectedRoom)) {
+                    System.out.println("" + selectedPlant.getSpeciesName() + " is already in " + selectedRoom.getName() + ".");
+                    continue;
+                }
+    
+                break; // Exit loop once a valid room is selected
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        }
+    
+        // Move the Plant & Save Changes
+        selectedPlant.setRoom(selectedRoom);
+        System.out.println(selectedPlant.getSpeciesName() + " has been moved to " + selectedRoom.getName());
+    
+        // Update file storage
+        FileHandler.writePlantsToFile(plantList);
+    }
+    
 
     public static void deactivatePlant(List<Plant> plantList) {
         

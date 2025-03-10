@@ -42,7 +42,7 @@ public class RoomManager extends BaseObjectManager<Room> {
             // Light Volume
             String lightVolume = "";
             while  (!lightVolume.matches("(?i)low|medium|high")) {
-                System.out.println("Enter light requirements (Low, Medium, High): ");
+                System.out.println("Enter light volume (Low, Medium, High): ");
                 lightVolume = scanner.nextLine().trim().toLowerCase();
                 if (!lightVolume.matches("low|medium|high")) {
                     System.out.println("Invalid input.  Please enter 'Low', 'Medium', or 'High'.");

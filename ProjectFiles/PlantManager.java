@@ -69,8 +69,16 @@ public class PlantManager {
                 }
             }
 
+            // Generate the next watering date
+            LocalDate nextWateringDate = lastWateredDate.plusDays(selectedSpecies.getWateringCadence());
+
+            // Ensure nextWateringDate is not in the past
+            if (nextWateringDate.isBefore(LocalDate.now())) {
+                nextWateringDate = LocalDate.now();
+            }
+
             String plantId = IDGenerator.generatePlantId(selectedSpecies.getSpeciesName(), plantList);
-            Plant newPlant = new Plant(plantId, selectedSpecies, selectedRoom, lastWateredDate, lastWateredDate.plusDays(selectedSpecies.getWateringCadence()));
+            Plant newPlant = new Plant(plantId, selectedSpecies, selectedRoom, lastWateredDate, nextWateringDate);
 
             plantList.add(newPlant);
             FileHandler.writePlantsToFile(plantList);
